@@ -20,8 +20,11 @@ Bu site, kişisel ve mesleki bilgilerinizi sunmak için tasarlanmış bir web uy
 ```bash
     git clone https://github.com/esmaozbalta/Portfolio-website.git <proje_adi>
 ```
-
-2. Gerekli bağımlılıkları yükleyin:
+2. Klasörünüzün içine girin:
+```bash
+    cd <proje_adi>
+```
+3. Gerekli bağımlılıkları yükleyin:
 ```bash
     npm install
     npm install express
@@ -30,7 +33,7 @@ Bu site, kişisel ve mesleki bilgilerinizi sunmak için tasarlanmış bir web uy
 
 4. Veri tabanını bağlayın:
 
-Aşağıdaki kodu kendi veri tabanı bilgilerinize göre güncelleyin.
+server/admin.js sayfasindaki kodu kendi veri tabanı bilgilerinize göre güncelleyin.
 ```bash
 mongodb+srv://<kullaniciadi>:<sifre>@cluster0.mongodb.net/<veritabaniadi>?retryWrites=true&w=majority
 ```

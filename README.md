@@ -50,3 +50,4 @@ Server'ı durdurmak (terminate etmek) için, yukarıdaki komutla bulduğunuz PID
 ```bash
     kill -9 <PID>
 ```
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)

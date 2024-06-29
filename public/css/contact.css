@@ -1,0 +1,190 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+	background: linear-gradient(to right, #cac8c9 0%, #5a83f591 100%); /* Arka plan için bir gradient renk geçişi */
+	font-size: 12px; /* Genel font boyutu */
+}
+  
+body, button, input {
+	font-family: 'Mukta', sans-serif; /* Tüm sayfa için font ailesi ayarı */
+    background-color: #f8f9fa; /* Sayfa arkaplan rengi */
+    color: #333; /* Genel metin rengi */
+}
+header {
+    background-color: #343a40; /* Header arkaplan rengi */
+    color: #fff; /* Header metin rengi */
+    padding: 15px 0; /* Header iç kenar boşluğu */
+    display: flex; /* Flex konteyner */
+    align-items: center; /* Dikey hizalama */
+    justify-content: space-between; /* Aralarında boşluk bırakarak yatay hizalama */
+    position: relative; /* Göreceli konumlandırma */
+}
+
+.nav-link {
+    color: #fff; /* Navigasyon link metin rengi */
+    text-decoration: none; /* Link altı çizgi kaldırma */
+    margin: 0 10px; /* Linkler arası boşluk */
+    font-size: 14px; /* Link font boyutu */
+    transition: color 0.3s; /* Renk geçiş süresi */
+}
+
+.nav-link:hover {
+    color: #5e66db; /* Link üzerine gelindiğinde renk değiştirme */
+}
+  
+.background {
+	display: flex; /* Esnek kutu modeli */
+	min-height: 100vh; /* Minimum yükseklik, tam ekran yüksekliği */
+}
+
+.container {
+	flex: 0 1 700px; /* Esnek kutunun boyutu ve genişliği */
+	margin: auto; /* Otomatik margin, ortalama için */
+	padding: 10px; /* İç kenar boşluğu */
+}
+
+/* EKRAN GÖRSELİ AYARLARI */
+.screen {
+	position: relative; /* Nispi konumlandırma */
+	background: #3e3e3e; /* Arka plan rengi */
+	border-radius: 15px; /* Kenarları yuvarlatır */
+}
+  
+.screen:after {
+	content: ''; /* Boş içerik */
+	display: block; /* Blok seviyesi element */
+	position: absolute; /* Mutlak konumlandırma */
+	top: 0; /* Üstten sıfır */
+	left: 20px; /* Soldan 20 piksel */
+	right: 20px; /* Sağdan 20 piksel */
+	bottom: 0; /* Alttan sıfır */
+	border-radius: 15px; /* Kenarları yuvarlatır */
+	box-shadow: 0 20px 40px rgba(0, 0, 0, .4); /* Gölge efekti */
+	z-index: -1; /* Z indeks değeri, arkaya yerleştirilir */
+}
+  
+.screen-header { /* Ekran başlığı */
+	display: flex; /* Flex konteyner */
+	align-items: center; /* Dikey hizalama */
+	padding: 10px 20px; /* İç kenar boşluğu */
+	background: #4d4d4f; /* Arka plan rengi */
+	border-top-left-radius: 15px; /* Sol üst köşe yuvarlaklığı */
+	border-top-right-radius: 15px; /* Sağ üst köşe yuvarlaklığı */
+}
+  
+.screen-button { /* Ekran düğmeleri */
+	display: inline-block; /* Satır içi blok düzeyi */
+	width: 8px; /* Genişlik */
+	height: 8px; /* Yükseklik */
+	margin-right: 3px; /* Sağ kenar boşluğu */
+	border-radius: 8px; /* Kenar yuvarlatma */
+}
+  
+.screen-button.red { /* Kırmızı düğme */
+	background: #ed1c6f;
+}
+  
+.screen-button.yellow { /* Sarı düğme */
+	background: #e8e925;
+}
+  
+.screen-button.green { /* Yeşil düğme */
+	background: #74c54f; 
+}
+  
+.screen-body {
+	display: flex; /* Flex konteyner */
+}
+  
+.screen-body-item {
+	flex: 1; /* Esneklik oranı */
+	padding: 50px; /* İç kenar boşluğu */
+}
+  
+.contact-tel { /* Telefon numarası */
+	margin-top: auto; /* Otomatik üst kenar boşluğu, alt tarafa yapışır */
+	font-size: 8px; /* Font boyutu */
+	color: #888; /* Metin rengi */
+}
+  
+.contact-form-info {
+	margin-bottom: 15px; /* Alt kenar boşluğu */
+}
+  
+.contact-form-info.message {
+	margin-top: 15px; /* Üst kenar boşluğu */
+}
+  
+.contact-form-info.buttons {
+	margin-bottom: 0; /* Alt kenar boşluğu sıfır */
+	text-align: right; /* Sağ hizalama */
+}
+  
+.contact-form-control { /* İletişim formu giriş kutuları */
+	width: 700px; /* Genişlik */
+	padding: 15px 0; /* İç kenar boşluğu */
+	background: none; /* Arka plan yok */
+	border: none; /* Kenar yok */
+	border-bottom: 1px solid #666; /* Alt kenar çizgisi */
+	color: #ddd; /* Metin rengi */
+	font-size: 14px; /* Font boyutu */
+	outline: none; /* Kenar çizgisi yok */
+	transition: border-color .2s; /* Geçiş efekti */
+}
+
+.contact-form-control::placeholder {
+	color: #666; /* Placeholder metin rengi */
+}
+  
+.contact-form-control:focus {
+	border-bottom-color: #ddd; /* Odaklandığında alt kenar rengi */
+}
+  
+.contact-form-button { /* Gönderme düğmesi */
+	background: none; /* Arka plan yok */
+	border: none; /* Kenar yok */
+	color: #4070f4; /* Metin rengi */
+	font-size: 14px; /* Font boyutu */
+	cursor: pointer; /* İmleç türü */
+}
+  
+.contact-form-button:hover { /* Gönderme düğmesi üzerine gelince */
+	color: #f7f6fa; /* Metin rengi değişimi */
+}
+
+@media screen and (max-width: 520px) { /* 520 pikselden küçük ekranlar için medya sorgusu */
+	.screen-body {
+	  flex-direction: column; /* Dikey hizalama */
+	}
+  
+	.screen-body-item.left {
+	  margin-bottom: 30px; /* Alt kenar boşluğu */
+	}
+  
+	.contact-title {
+	  flex-direction: row; /* Yatay hizalama */
+	}
+  
+	.contact-title span {
+	  margin-right: 12px; /* Sağ kenar boşluğu */
+	}
+  
+	.contact-title:after {
+	  display: none; /* Görünmez */
+	}
+}
+  
+@media screen and (max-width: 600px) { /* 600 pikselden küçük ekranlar için medya sorgusu */
+	.screen-body {
+	  padding: 40px; /* İç kenar boşluğu */
+	}
+  
+	.screen-body-item {
+	  padding: 0; /* İç kenar boşluğu */
+	}
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kayıt Ol</title>
+  <link rel="stylesheet" href="css/kayit.css">
+</head>
+<body>
+  <div class="background">
+    <div class="container">
+      <div class="screen">
+        <div class="screen-body-item">
+          <div class="app-form">
+            <div class="app-form-group">
+              <input id="kullaniciAdi" class="app-form-control" placeholder="Kullanıcı Adı">
+            </div>
+            <div class="app-form-group">
+              <input id="sifre" class="app-form-control" placeholder="Şifre" type="password">
+            </div>
+            <div class="app-form-group">
+              <input id="eposta" class="app-form-control" placeholder="E-posta">
+            </div>
+            <div class="app-form-group buttons">
+              <button class="app-form-button" onclick="kayitOl()">KAYIT OL</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function kayitOl() {
+      const kullaniciAdi = document.getElementById('kullaniciAdi').value; // Kullanıcı adı al
+      const sifre = document.getElementById('sifre').value; // Şifre al
+      const eposta = document.getElementById('eposta').value; // E-posta al
+
+      try {
+        const response = await fetch('/kayit', { // Sunucuya POST isteği gönderiliyor
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ kullaniciAdi, sifre, eposta }) // Veriler JSON formatında gönderiliyor
+        });
+
+        if (!response.ok) {
+          throw new Error('Kayıt işlemi başarısız');  // İsteğin başarısız olduğu durumda hata mesaji veriliyor
+        }
+
+        alert('Kayıt işlemi başarıyla tamamlandı'); // Başarılı kayıt mesajı gösteriliyor
+        // İşlem başarılıysa sayfayı yenileyebilir veya yönlendirme yapabilirsiniz
+      } catch (error) {
+        console.error('Kayıt işlemi sırasında hata:', error);  // Hata durumunda konsola hata yazdırılıyor
+        alert('Kayıt işlemi sırasında bir hata oluştu');
+      }
+    }
+    function kayitOl() {
+      window.location.href = 'giris.html';
+    }
+  </script>
+</body>
+</html>

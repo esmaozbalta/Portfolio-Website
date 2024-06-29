@@ -1,0 +1,212 @@
+/* Universal box-sizing and font smoothing */
+*, *:before, *:after {
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Body styles */
+body {
+	background: linear-gradient(to right, #cac8c9 0%, #adadad 100%); /* Arka plan gradient stil */
+	font-size: 12px; /* Temel font büyüklüğü */
+}
+
+/* Font styles for body, button, input */
+body, button, input {
+	font-family: 'Montserrat', sans-serif; /* Font ailesi */
+	font-weight: 700; /* Font ağırlığı */
+	letter-spacing: 1.4px; /* Harf aralığı */
+}
+
+/* Background container flex layout */
+.background {
+	display: flex;
+	min-height: 100vh; /* Ekranın tamamını kaplayacak minimum yükseklik */
+}
+
+/* Container styles */
+.container {
+	flex: 0 1 700px; /* Esneklik ve boyutlandırma */
+	margin: auto; /* Ortalamak için margin */
+	padding: 10px; /* Içerik dolgusu */
+}
+
+/* Main screen styles */
+.screen {
+	position: relative; /* Göreceli pozisyon */
+	background: #3e3e3e; /* Arka plan rengi */
+	border-radius: 15px; /* Yuvarlatılmış köşeler */
+}
+
+/* Pseudo-element for screen shadow */
+.screen:after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 20px;
+	right: 20px;
+	bottom: 0;
+	border-radius: 15px; /* Gölgeli kenarlar */
+	box-shadow: 0 20px 40px rgba(0, 0, 0, .4); /* Kutu gölgesi */
+	z-index: -1; /* Arkaplanın altında kalacak z-index */
+}
+
+/* Screen header styles */
+.screen-header {
+	display: flex; /* Flex düzeni */
+	align-items: center; /* Öğeleri dikeyde hizalama */
+	padding: 10px 20px; /* Kenar dolgusu */
+	background: #4d4d4f; /* Başlık arka plan rengi */
+	border-top-left-radius: 15px; /* Yuvarlatılmış köşeler */
+	border-top-right-radius: 15px; /* Yuvarlatılmış köşeler */
+}
+
+/* Left side of screen header */
+.screen-header-left {
+	margin-right: auto; /* Sağa yaslamak için boşluk bırak */
+}
+
+/* Buttons in screen header */
+.screen-header-button {
+	display: inline-block; /* İnline blok olarak düzenle */
+	width: 8px; /* Genişlik */
+	height: 8px; /* Yükseklik */
+	margin-right: 3px; /* Sağdan boşluk */
+	border-radius: 8px; /* Yuvarlatılmış köşeler */
+	background: white; /* Arka plan rengi */
+}
+
+/* Red button in screen header */
+.screen-header-button.red {
+	background: #ed1c6f; /* Kapatma butonu rengi */
+}
+
+/* Yellow button in screen header */
+.screen-header-button.yellow {
+	background: #e8e925;
+}
+
+/* Green button in screen header */
+.screen-header-button.green {
+	background: #74c54f;
+}
+
+/* Right side of screen header */
+.screen-header-right {
+	display: flex; /* Flex düzeni */
+}
+
+/* Main body of screen */
+.screen-body {
+	display: flex; /* Flex düzeni */
+}
+
+/* Items in the main body */
+.screen-body-item {
+	flex: 1; /* Esnek büyüklük */
+	padding: 50px; /* Içerik dolgusu */
+}
+
+/* Left aligned items in the main body */
+.screen-body-item.left {
+	display: flex; /* Flex düzeni */
+	flex-direction: column; /* Dikey yönlendirme */
+}
+
+/* Title styles */
+.app-title {
+	display: flex; /* Flex düzeni */
+	flex-direction: column; /* Dikey yönlendirme */
+	position: relative; /* Göreceli pozisyon */
+	color: #88dafa; /* Başlık rengi */
+	font-size: 26px; /* Font büyüklüğü */
+}
+
+/* Form group styles */
+.app-form-group {
+	margin-bottom: 15px; /* Alt boşluk */
+}
+
+/* Form group for messages */
+.app-form-group.message {
+	margin-top: 40px; /* Üst boşluk */
+}
+
+/* Button group in form */
+.app-form-group.buttons {
+	margin-bottom: 0; /* Alt boşluk */
+	text-align: right; /* Sağa hizalama */
+}
+
+/* Form control styles */
+.app-form-control {
+	width: 100%; /* Genişlik */
+	padding: 10px 0; /* Içerik dolgusu */
+	background: none; /* Arka plan yok */
+	border: none; /* Kenar yok */
+	border-bottom: 1px solid #666; /* Alt çizgi */
+	color: #ddd; /* Yazı rengi */
+	font-size: 14px; /* Font büyüklüğü */
+	outline: none; /* Odak stilini kaldır */
+	transition: border-color .2s; /* Geçiş efekti */
+}
+
+/* Placeholder styles for form control */
+.app-form-control::placeholder {
+	color: #666; /* Placeholder rengi */
+}
+
+/* Focus styles for form control */
+.app-form-control:focus {
+	border-bottom-color: #ddd; /* Odaklandığında alt çizgi rengi */
+}
+
+/* Button styles */
+.app-form-button {
+	background: none; /* Arka plan yok */
+	border: none; /* Kenar yok */
+	color: #5680dc; /* Buton rengi */
+	font-size: 14px; /* Font büyüklüğü */
+	cursor: pointer; /* İmleç türü */
+	outline: none; /* Odak stilini kaldır */
+}
+
+/* Hover styles for buttons */
+.app-form-button:hover {
+	color: #170445; /* Buton üzerine gelince renk */
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 520px) {
+	.screen-body {
+		flex-direction: column; /* Dikey düzen */
+	}
+
+	.screen-body-item.left {
+		margin-bottom: 30px; /* Alt boşluk */
+	}
+
+	.app-title {
+		flex-direction: row; /* Yatay düzen */
+	}
+
+	.app-title span {
+		margin-right: 12px; /* Sağ boşluk */
+	}
+
+	.app-title:after {
+		display: none; /* Sonraki öğe gizle */
+	}
+}
+
+/* Media query for even smaller screens */
+@media screen and (max-width: 600px) {
+	.screen-body {
+		padding: 40px; /* Içerik dolgusu */
+	}
+
+	.screen-body-item {
+		padding: 0; /* Içerik dolgusu */
+	}
+}

@@ -1,0 +1,238 @@
+/* Body stillemesi */
+body {
+    background: linear-gradient(to right, #cac8c9 0%, #adadad 100%); /* Arka plan lineer gradienti */
+    font-size: 12px; /* Font büyüklüğü */
+    font-family: 'Montserrat', sans-serif; /* Yazı fontu */
+    font-weight: 700; /* Yazı kalınlığı */
+    letter-spacing: 1.4px; /* Harf aralığı */
+}
+
+/* Body, button ve input elementlerine Montserrat fontunu uygula */
+body, button, input {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+}
+
+/* Arka plan container'ı */
+.background {
+    display: flex; /* Flex container */
+    min-height: 100vh; /* Minimum ekran yüksekliği kadar genişlik */
+}
+
+/* Ana container stillemesi */
+.container {
+    flex: 0 1 700px; /* Flex özellikleri */
+    margin: auto; /* Otomatik kenar boşlukları */
+    padding: 10px; /* İç içe boşluk */
+}
+
+/* Screen elementinin stillemesi */
+.screen {
+    position: relative; /* Pozisyon */
+    background: #3e3e3e; /* Arka plan rengi */
+    border-radius: 15px; /* Kenar yuvarlatma */
+}
+
+/* Screen elementine gölge eklemek için pseudo element */
+.screen:after {
+    content: ''; /* İçerik oluştur */
+    display: block; /* Blok öğe */
+    position: absolute; /* Mutlak pozisyon */
+    top: 0; /* Üst kenardan başla */
+    left: 20px; /* Sol kenardan başla */
+    right: 20px; /* Sağ kenara kadar uzan */
+    bottom: 0; /* Alt kenara kadar uzan */
+    border-radius: 15px; /* Kenar yuvarlatma */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .4); /* Kutu gölgesi */
+    z-index: -1; /* Z indeksi */
+}
+
+/* Screen header'ın stillemesi */
+.screen-header {
+    display: flex; /* Flex container */
+    align-items: center; /* Öğeleri dikey olarak hizala */
+    padding: 10px 20px; /* İç içe boşluk */
+    background: #4d4d4f; /* Arka plan rengi */
+    border-top-left-radius: 15px; /* Sol üst köşeyi yuvarla */
+    border-top-right-radius: 15px; /* Sağ üst köşeyi yuvarla */
+}
+
+/* Sol tarafında bulunan öğeleri sağa hizala */
+.screen-header-left {
+    margin-right: auto;
+}
+
+/* Screen header butonlarının stillemesi */
+.screen-header-button {
+    display: inline-block; /* Satır içi blok */
+    width: 8px; /* Genişlik */
+    height: 8px; /* Yükseklik */
+    margin-right: 3px; /* Sağ kenar boşluğu */
+    border-radius: 8px; /* Kenar yuvarlatma */
+    background: white; /* Arka plan rengi */
+}
+
+/* Kırmızı screen header butonu */
+.screen-header-button.red {
+    background: #ed1c6f; /* Kapatma butonu rengi */
+}
+
+/* Sarı screen header butonu */
+.screen-header-button.yellow {
+    background: #e8e925;
+}
+
+/* Yeşil screen header butonu */
+.screen-header-button.green {
+    background: #74c54f;
+}
+
+/* Screen body'nin stillemesi */
+.screen-body {
+    display: flex; /* Flex container */
+}
+
+/* Screen body öğelerinin stillemesi */
+.screen-body-item {
+    flex: 1; /* Flex özellikleri */
+    padding: 50px; /* İç içe boşluk */
+}
+
+/* Sol tarafta bulunan screen body öğelerinin stillemesi */
+.screen-body-item.left {
+    display: flex; /* Flex container */
+    flex-direction: column; /* Sütun düzeni */
+}
+
+/* Uygulama başlığının stillemesi */
+.app-title {
+    display: flex; /* Flex container */
+    flex-direction: column; /* Sütun düzeni */
+    position: relative; /* Pozisyon */
+    color: #88dafa; /* Başlık rengi */
+    font-size: 26px; /* Font büyüklüğü */
+}
+
+/* İletişim bilgisi stillemesi */
+.app-contact {
+    margin-top: auto; /* Üst kenardan başla */
+    font-size: 8px; /* Font büyüklüğü */
+    color: #888; /* İletişim bilgisi rengi */
+}
+
+/* Form grubu container'ının stillemesi */
+.app-form-group {
+    margin-bottom: 15px; /* Alt kenara kadar uzan */
+}
+
+/* Mesaj form grubu için ek boşluk */
+.app-form-group.message {
+    margin-top: 40px; /* Üst kenardan başla */
+}
+
+/* Buton container'ının stillemesi */
+.app-form-group.buttons {
+    margin-bottom: 0; /* Alt kenara kadar uzan */
+    text-align: right; /* Sağa hizalama */
+}
+
+/* Form kontrol elementinin stillemesi */
+.app-form-control {
+    width: 100%; /* Genişlik */
+    padding: 10px 0; /* İç içe boşluk */
+    background: none; /* Arka plan yok */
+    border: none; /* Kenar yok */
+    border-bottom: 1px solid #666; /* Alt çizgi */
+    color: #ddd; /* Yazı rengi */
+    font-size: 14px; /* Font büyüklüğü */
+    outline: none; /* Kontur yok */
+    transition: border-color .2s; /* Geçiş efekti */
+}
+
+/* Form kontrol elementinin placeholder rengi */
+.app-form-control::placeholder {
+    color: #666; /* Placeholder rengi */
+}
+
+/* Form kontrol elementi odaklandığında stillemesi */
+.app-form-control:focus {
+    border-bottom-color: #ddd; /* Alt çizgi rengi */
+}
+
+/* Buton stillemesi */
+.app-form-button {
+    background: none; /* Arka plan yok */
+    border: none; /* Kenar yok */
+    color: #5680dc; /* Buton rengi */
+    font-size: 14px; /* Font büyüklüğü */
+    cursor: pointer; /* İşaretçi */
+    outline: none; /* Kontur yok */
+}
+
+/* Butonun üzerine gelince stillemesi */
+.app-form-button:hover {
+    color: #170445; /* Buton hover rengi */
+}
+
+/* Credits bölümünün stillemesi */
+.credits {
+    display: flex; /* Flex container */
+    justify-content: center; /* Ortaya hizalama */
+    align-items: center; /* Öğeleri ortalamak için */
+    margin-top: 20px; /* Üst kenardan başla */
+    color: #ffa4bd; /* Footer yazı rengi */
+    font-family: 'Roboto Condensed', sans-serif; /* Yazı fontu */
+    font-size: 16px; /* Font büyüklüğü */
+    font-weight: normal; /* Yazı kalınlığı */
+}
+
+/* Credits linkinin stillemesi */
+.credits-link {
+    display: flex; /* Flex container */
+    align-items: center; /* Öğeleri ortalamak için */
+    color: #fff; /* Yazı rengi */
+    font-weight: bold; /* Yazı kalınlığı */
+    text-decoration: none; /* Altçizgi yok */
+}
+
+/* Dribbble ikonunun stillemesi */
+.dribbble {
+    width: 20px; /* Genişlik */
+    height: 20px; /* Yükseklik */
+    margin: 0 5px; /* Dış kenar boşluğu */
+}
+
+/* Küçük ekranlar için medya sorgusu */
+@media screen and (max-width: 520px) {
+    .screen-body {
+        flex-direction: column; /* Sütun düzeni */
+    }
+
+    .screen-body-item.left {
+        margin-bottom: 30px; /* Alt kenara kadar uzan */
+    }
+
+    .app-title {
+        flex-direction: row; /* Satır düzeni */
+    }
+
+    .app-title span {
+        margin-right: 12px; /* Sağ kenar boşluğu */
+    }
+
+    .app-title:after {
+        display: none; /* Sonraki elementi gizle */
+    }
+}
+
+/* Orta büyüklükte ekranlar için medya sorgusu */
+@media screen and (max-width: 600px) {
+    .screen-body {
+        padding: 40px; /* İç içe boşluk */
+    }
+
+    .screen-body-item {
+        padding: 0; /* İç içe boşluk */
+    }
+}

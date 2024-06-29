@@ -1,0 +1,329 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Mukta', sans-serif; /* Sayfa genelinde kullanılacak font ailesi */
+    background-color: #f8f9fa; /* Sayfa arka plan rengi */
+    color: #333; /* Sayfa genel metin rengi */
+}
+
+.container {
+    max-width: 1200px; /* İçerik containerının maksimum genişliği */
+    margin: 0 auto; /* İçerik containerını sayfanın ortasına hizalar */
+    padding: 20px; /* İçerik containerının iç boşluğu */
+}
+
+/* Header styles */
+header {
+    background-color: #343a40; /* Başlık arka plan rengi */
+    color: #fff; /* Başlık metin rengi */
+    padding: 10px 0; /* Başlık iç boşluğu */
+    display: flex; /* Flex özellikleri uygula */
+    align-items: center; /* Öğeleri dikeyde hizala */
+    justify-content: space-between; /* Arasında boşluk bırakarak öğeleri yatayda hizala */
+    position: relative; /* Pozisyonu göreceli yap */
+}
+
+.nav-link {
+    color: #fff; /* Menü bağlantıları metin rengi */
+    text-decoration: none; /* Bağlantı altı çizgisini kaldır */
+    margin: 0 10px; /* Bağlantılar arasında boşluk bırak */
+    font-size: 16px; /* Bağlantı metin boyutu */
+    transition: color 0.3s; /* Renk değişimine geçiş efekti ekle */
+}
+
+.nav-link:hover {
+    color: #5e66db; /* Bağlantı üzerine gelindiğinde renk değiştir */
+}
+
+.content-wrapper {
+    display: flex; /* Flex özellikleri uygula */
+    flex-wrap: wrap; /* İçeriği sarmala */
+    justify-content: space-between; /* Arasında boşluk bırakarak öğeleri yatayda hizala */
+    padding: 20px; /* İçerik arasındaki boşluk */
+}
+
+.profile-img-wrapper {
+    text-align: center; /* Profil resmi ortala */
+    margin-bottom: 20px; /* Alt boşluk bırak */
+}
+
+.profile-img-wrapper img {
+    width: 130px; /* Profil resmi genişliği */
+    height: 130px; /* Profil resmi yüksekliği */
+    border-radius: 50%; /* Profil resmi kenar yuvarlaklığı */
+    border: 3px solid #0772ff; /* Profil resmi kenarlık rengi ve kalınlığı */
+}
+
+.profile-name {
+    text-align: center; /* İsim ortala */
+    margin-bottom: 10px; /* Alt boşluk bırak */
+    font-size: 24px; /* İsim metin boyutu */
+}
+
+.profile-designation {
+    background-color: #343a40; /* Pozisyon arka plan rengi */
+    color: #fff; /* Pozisyon metin rengi */
+    font-size: 14px; /* Pozisyon metin boyutu */
+    padding: 5px 10px; /* Pozisyon iç boşluğu */
+    border-radius: 20px; /* Pozisyon kenar yuvarlaklığı */
+    margin-bottom: 10px; /* Alt boşluk bırak */
+    display: inline-block; /* Blok öğeleri satır içi hale getir */
+}
+
+.social-links {
+    text-align: center; /* Sosyal medya bağlantılarını ortala */
+    margin-bottom: 20px; /* Alt boşluk bırak */
+}
+
+.social-link {/*github ve linkedin ikon*/
+    display: inline-block; /* Sosyal medya bağlantılarını satır içi hale getir */
+    margin: 0 5px; /* Bağlantılar arasında boşluk bırak */
+    color: #343a40; /* Bağlantı metin rengi */
+    font-size: 30px; /* Bağlantı metin boyutu */
+    transition: color 0.3s; /* Renk değişimine geçiş efekti ekle */
+}
+
+.social-link:hover {
+    color: #076eff; /* Bağlantı üzerine gelindiğinde renk değiştir */
+}
+
+/* Widget styles */
+.left {
+    margin-bottom: 20px; /* Sol widget arasında boşluk bırak */
+    background-color: #fff; /* Sol widget arka plan rengi */
+    border-radius: 5px; /* Sol widget kenar yuvarlaklığı */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sol widget gölge efekti */
+    padding: 15px; /* Sol widget iç boşluğu */
+}
+
+.left-title {
+    font-size: 18px; /* Sol widget başlık metin boyutu */
+    margin-bottom: 10px; /* Alt boşluk bırak */
+    color: #3164efe1; /* Sol widget başlık rengi */
+}
+
+.left-content p {
+    margin-bottom: 10px; /* Paragraf arasında boşluk bırak */
+    font-size: 14px; /* Paragraf metin boyutu */
+    color: #555; /* Paragraf metin rengi */
+}
+
+/* Main content styles */
+main {
+    flex: 3; /* Ana içerik bölümü genişliği */
+    max-width: 800px; /* Ana içerik maksimum genişliği */
+}
+
+.resume-section {
+    margin-bottom: 40px; /* Özgeçmiş bölümü arasında boşluk bırak */
+}
+
+.section-subtitle {
+    font-size: 17px; /* Bölüm alt başlık metin boyutu */
+    color: #3a49e6; /* Bölüm alt başlık rengi */
+    margin-bottom: 5px; /* Alt boşluk bırak */
+}
+
+.section-title {
+    font-size: 24px; /* Bölüm başlık metin boyutu */
+    color: #3164efe1; /* Bölüm başlık rengi */
+    margin-bottom: 15px; /* Alt boşluk bırak */
+}
+
+.time-line-item {
+    margin-bottom: 20px; /* Zaman çizelgesi öğeleri arasında boşluk bırak */
+}
+
+.time-line-item-title {
+    font-size: 18px; /* Zaman çizelgesi öğe başlık metin boyutu */
+    color: #343a40; /* Zaman çizelgesi öğe başlık rengi */
+    margin-bottom: 5px; /* Alt boşluk bırak */
+}
+
+.time-line-item-subtitle {
+    font-size: 14px; /* Zaman çizelgesi öğe alt başlık metin boyutu */
+    color: #555; /* Zaman çizelgesi öğe alt başlık rengi */
+    margin-bottom: 5px; /* Alt boşluk bırak */
+}
+
+.time-line-item-content {
+    font-size: 14px; /* Zaman çizelgesi öğe içerik metin boyutu */
+    color: #777; /* Zaman çizelgesi öğe içerik rengi */
+}
+
+/* Services section */
+h5 {
+    font-family: Arial, sans-serif; /* Yazı tipi */
+    font-size: 1.5em; /* Yazı boyutu */
+    font-weight: bold; /* Yazı kalınlığı */
+    color: #333; /* Yazı rengi */
+    margin: 10px 0; /* Üst ve alt boşluk */
+}
+
+.services-section {
+    margin-bottom: 40px; /* Hizmetler bölümü arasında boşluk bırak */
+}
+
+.service-icon img {
+    width: 40px; /* İkon genişliği */
+    height: 40px; /* İkon yüksekliği */
+}
+
+.service-title {
+    font-size: 18px; /* Hizmet başlık metin boyutu */
+    color: #343a40; /* Hizmet başlık rengi */
+    margin-bottom: 10px; /* Alt boşluk bırak */
+}
+
+.service-description {
+    font-size: 14px; /* Hizmet açıklama metin boyutu */
+    color: #777; /* Hizmet açıklama rengi */
+}
+
+/* Genel kart stili */
+.service-card {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* İkon stili */
+.service-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    margin-right: 15px;
+    overflow: hidden;
+}
+
+/* Medya gövdesi stili */
+.media-body {
+    flex: 1;
+}
+
+/* Başlık stili */
+.service-title {
+    font-size: 1.10em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Açıklama stili */
+.service-description {
+    font-size: 1em;
+    color: #666;
+}
+.achievements-section {
+    padding: 20px;
+}
+
+.achievement-cards-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Bu özellik öğelerin sarmalanmasını sağlar */
+    gap: 10px; /* Kutular arasında boşluk bırakır */
+}
+
+.achievement-card {
+    flex: 0 1 calc(20% - 10px); /* Her kutunun genişliği %20 eksi boşluk */
+    max-width: calc(20% - 10px);
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    margin-bottom: 10px; /* Alt satıra geçişler için alt boşluk ekleyin */
+}
+
+.achievement-card-icon {
+    width: 60px; /* İkonun boyutunu sabit tutun */
+    height: 60px; /* İkonun boyutunu sabit tutun */
+}
+
+
+.achievement-card-title {
+    font-size: 14px; /* Başlık boyutunu küçültün */
+    color: #343a40;
+    margin-bottom: 5px;
+}
+
+.achievement-card-description {
+    font-size: 12px; /* Açıklama boyutunu küçültün */
+    color: #777;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Responsive uygulamalari */
+@media (max-width: 576px) { /*yeteneklerdei ikonlar*/
+    .achievement-cards-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .achievement-card {
+        flex: 0 1 calc(50% - 20px); /* İki sütunlu düzen için*/
+        max-width: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-img-wrapper img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .service-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .service-icon {
+        width: 50px;
+        height: 50px;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .service-icon img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+@media (max-width: 768px) { /*responsive olmasi icin sol tarafi ekran kuculunce ekrani kaplatir*/
+    .content-wrapper {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .text {
+      padding: 20px 0;
+      text-align: center;
+    }
+  
+    .hire {
+      margin-top: 20px;
+    }
+}

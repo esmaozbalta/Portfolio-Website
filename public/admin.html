@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Sayfanın başlık etiketi. -->
+    <title>Özgeçmiş</title>
+    <link href="https://fonts.googleapis.com/css?family=Mukta:300,400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/vendors/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="collapsible-nav" id="collapsible-nav">
+            <a href="index.html" class="nav-link">ANASAYFA</a>
+            <a href="adminhakkimda.html" class="nav-link">HAKKIMDA</a>
+            <a href="portfolyo.html" class="nav-link">ÖZGEÇMİŞ</a>
+            <a href="contact.html" class="nav-link">İLETİŞİM</a>
+        </nav>
+    </header>
+    <div class="content-wrapper">
+         <!-- Sol Menu -->
+        <aside>
+            <!-- Profil resim kutusu -->
+            <div class="profile-img-wrapper">
+                <img src="views/profil.jpeg" alt="profile">
+            </div>
+            <!-- Profil adı -->
+            <h1 class="profile-name">Esma Özbalta</h1>
+            <div class="text-center">
+                <span class="badge badge-white badge-pill profile-designation">Yazılım Mühendisliği Öğrencisi</span>
+            </div>
+            <!-- Sosyal medya bağlantıları -->
+            <nav class="social-links">
+                <!-- LinkedIn bağlantısı -->
+                <a href="https://www.linkedin.com/in/esma-%C3%B6zbalta-79892123a/" class="social-link"><i class="fab fa-linkedin"></i></a>
+                <!-- GitHub bağlantısı -->
+                <a href="https://github.com/esmaozbalta" class="social-link"><i class="fab fa-github"></i></a>
+            </nav>
+            <!-- Kişisel bilgiler bölümü -->
+            <div class="left">
+                <h5 class="left-title">Kişisel Bilgiler</h5>
+                <ul id="infocontent" class="left-content">
+                    <!-- Dinamik olarak eklenecek -->
+             
+                        <p class="time-line-item-title">Telefon: </p>
+                        <textarea id="tel0" rows="1" cols="20"></textarea><br>
+                        <p class="time-line-item-title">E-posta: </p>
+                        <textarea id="mail0" rows="1" cols="20"></textarea><br>
+                        <p class="time-line-item-subtitle">Adres: </p>
+                        <textarea id="adress0" rows="1" cols="20"></textarea><br>
+                        <button onclick="saveInfoItem(0)">Kaydet</button>
+         
+                </ul>
+            </div>
+            <!-- Diller bölümü -->
+            <div class="left card">
+                <div class="card-body">
+                    <h5 class="left-title card-title">Diller</h5>
+                    <ul id="languageTimeLine" class="left-content">
+                        <!-- Dinamik olarak eklenecek -->
+                    </ul>
+                    <button onclick="addLanguageItem()">Ekle</button>
+                </div>
+            </div>
+        </aside>
+        <main>
+            <!-- Eğitim bölümü -->
+            <section class="resume-section">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2 class="section-title">EĞİTİM</h2>
+                        <ul id="educationTimeLine" class="time-line">
+                            <!-- Dinamik olarak eklenecek -->
+                        </ul>
+                        <button onclick="addEducationItem()">Ekle</button>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2 class="section-title">DENEYİM</h2>
+                        <ul id="experienceTimeLine" class="time-line">
+                            <!-- Dinamik olarak eklenecek -->
+                        </ul>
+                        <button onclick="addExperienceItem()">Ekle</button>
+                    </div>
+                </div>
+            </section>
+            <!-- Projeler bölümü -->
+            <section class="services-section">
+                <h2 class="section-title">PROJELER</h2>
+                <div class="row" id="projectList">
+                    <!-- Dinamik olarak eklenecek projeler buraya gelecek -->
+                </div>
+                <button onclick="addProjectItem()">Proje Ekle</button>
+            </section>
+            <!-- Yetenekler bölümü -->
+            <section class="achievements-section">
+                <h2 class="section-title">YETENEKLER</h2>
+                <div class="achievement-cards-wrapper" id="achievementCards">
+                    <!-- Dinamik olarak eklenecek ikonlar burada listelenecek -->
+                </div>
+
+                <!-- İkon seçme formu -->
+                <form id="selectIconForm">
+                    <label for="iconSelect">İkon Seç:</label>
+                    <select id="iconSelect" name="iconSelect">
+                        <option value="" disabled selected>Lütfen bir ikon seçin</option>
+                        <option value="views/c.svg">C</option>
+                        <option value="views/c++.svg">C++</option>
+                        <option value="views/c2.svg">C#</option>
+                        <option value="views/python.svg">Python</option>
+                        <option value="views/java.svg">Java</option>
+                        <option value="views/html.svg">HTML</option>
+                        <option value="views/css.svg">CSS</option>
+                        <option value="views/nodejs.svg">Node.js</option>
+                    </select><br><br>
+                    <button type="submit">İkon Ekle</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Eğitim, deneyim, proje, yetenek ve dil verilerini saklamak için kullanılan diziler.
+        let educationItems = [];
+        let experienceItems = [];
+        let projectItems = [];
+        let achievementItems = [];
+        let deletedAchievementItems = [];
+        let languageItems = [];
+
+        // Sayfa yüklendiğinde yerel depodan verileri getir ve render fonksiyonlarını çağır.
+        window.onload = function () {
+            educationItems = JSON.parse(localStorage.getItem('educationItems')) || [];
+            renderEducationItems();
+            experienceItems = JSON.parse(localStorage.getItem('experienceItems')) || [];
+            renderExperienceItems();
+            projectItems = JSON.parse(localStorage.getItem('projectItems')) || [];
+            renderProjectItems();
+            achievementItems = JSON.parse(localStorage.getItem('achievementItems')) || [];
+            renderAchievementItems();
+            languageItems = JSON.parse(localStorage.getItem('languageItems')) || [];
+            renderLanguageItems();
+        };
+        
+        // Eğitim verilerini sayfaya ekler.
+        function renderEducationItems() {
+            const timeLine = document.getElementById('educationTimeLine');
+            timeLine.innerHTML = '';
+
+            educationItems.forEach((item, index) => {
+                const newItem = document.createElement('li');
+                newItem.className = 'time-line-item';
+
+                newItem.innerHTML = `
+                    <p class="badge badge-primary">Tarih: </p>
+                    <textarea id="date${index}" rows="1" cols="50">${item.date}</textarea><br>
+                    <p class="time-line-item-title">Okul: </p>
+                    <textarea id="school${index}" rows="1" cols="50">${item.school}</textarea><br>
+                    <p class="time-line-item-subtitle">Bölüm: </p>
+                    <textarea id="department${index}" rows="1" cols="50">${item.department}</textarea><br>
+                    <p class="time-line-item-subtitle">Açıklama: </p>
+                    <textarea id="description${index}" rows="10" cols="50">${item.description}</textarea><br>
+                    <button onclick="saveEducationItem(${index})">Kaydet</button>
+                    <button onclick="deleteEducationItem(${index})">Sil</button>
+                `;
+
+                timeLine.appendChild(newItem);
+            });
+        }
+
+        // Yeni eğitim verisi ekler.
+        function addEducationItem() {
+            const newItem = {
+                date: '',
+                school: '',
+                department: '',
+                description: ''
+            };
+            educationItems.push(newItem);
+            localStorage.setItem('educationItems', JSON.stringify(educationItems));
+            renderEducationItems();
+        }
+
+        // Eğitim verisini kaydeder ve yerel depoya yazar.
+        function saveEducationItem(itemId) {
+            educationItems[itemId].date = document.getElementById(`date${itemId}`).value;
+            educationItems[itemId].school = document.getElementById(`school${itemId}`).value;
+            educationItems[itemId].department = document.getElementById(`department${itemId}`).value;
+            educationItems[itemId].description = document.getElementById(`description${itemId}`).value;
+
+            localStorage.setItem('educationItems', JSON.stringify(educationItems));
+            renderEducationItems();
+        }
+        
+        // Eğitim verisini siler ve yerel depoyu günceller.
+        function deleteEducationItem(itemId) {
+            educationItems.splice(itemId, 1);
+            localStorage.setItem('educationItems', JSON.stringify(educationItems));
+            renderEducationItems();
+        }
+
+        // Deneyim verilerini sayfaya ekler.
+        function renderExperienceItems() {
+            const timeLine = document.getElementById('experienceTimeLine');
+            timeLine.innerHTML = '';
+
+            experienceItems.forEach((item, index) => {
+                const newItem = document.createElement('li');
+                newItem.className = 'time-line-item';
+
+                newItem.innerHTML = `
+                    <p class="badge badge-primary">Tarih: </p>
+                    <textarea id="expDate${index}" rows="1" cols="50">${item.date}</textarea><br>
+                    <p class="time-line-item-title">Pozisyon: </p>
+                    <textarea id="position${index}" rows="1" cols="50">${item.position}</textarea><br>
+                    <p                    <textarea id="company${index}" rows="1" cols="50">${item.company}</textarea><br>
+                    <p class="time-line-item-subtitle">Açıklama: </p>
+                    <textarea id="expDescription${index}" rows="10" cols="50">${item.description}</textarea><br>
+                    <button onclick="saveExperienceItem(${index})">Kaydet</button>
+                    <button onclick="deleteExperienceItem(${index})">Sil</button>
+                `;
+
+                timeLine.appendChild(newItem);
+            });
+        }
+
+        // Yeni deneyim verisi ekler.
+        function addExperienceItem() {
+            const newItem = {
+                date: '',
+                position: '',
+                company: '',
+                description: ''
+            };
+            experienceItems.push(newItem);
+            localStorage.setItem('experienceItems', JSON.stringify(experienceItems));
+            renderExperienceItems();
+        }
+
+        // Deneyim verisini kaydeder ve yerel depoya yazar.
+        function saveExperienceItem(itemId) {
+            experienceItems[itemId].date = document.getElementById(`expDate${itemId}`).value;
+            experienceItems[itemId].position = document.getElementById(`position${itemId}`).value;
+            experienceItems[itemId].company = document.getElementById(`company${itemId}`).value;
+            experienceItems[itemId].description = document.getElementById(`expDescription${itemId}`).value;
+
+            localStorage.setItem('experienceItems', JSON.stringify(experienceItems));
+            renderExperienceItems();
+        }
+
+        // Deneyim verisini siler ve yerel depoyu günceller.
+        function deleteExperienceItem(itemId) {
+            experienceItems.splice(itemId, 1);
+            localStorage.setItem('experienceItems', JSON.stringify(experienceItems));
+            renderExperienceItems();
+        }
+
+        // Proje verilerini sayfaya ekler.
+        function renderProjectItems() {
+            const projectList = document.getElementById('projectList');
+            projectList.innerHTML = '';
+
+            projectItems.forEach((item, index) => {
+                const newItem = document.createElement('div');
+                newItem.className = 'col-md-4';
+
+                newItem.innerHTML = `
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Proje Adı: </h5>
+                            <textarea id="projectName${index}" rows="1" cols="50">${item.title}</textarea><br>
+                            <p class="card-text">Proje Açıklaması: </p>
+                            <textarea id="projectDescription${index}" rows="10" cols="50">${item.description}</textarea><br>
+                            <button onclick="saveProjectItem(${index})">Kaydet</button>
+                            <button onclick="deleteProjectItem(${index})">Sil</button>
+                        </div>
+                    </div>
+                `;
+
+                projectList.appendChild(newItem);
+            });
+        }
+
+        // Yeni proje verisi ekler.
+        function addProjectItem() {
+            const newItem = {
+                title: '',
+                description: ''
+            };
+            projectItems.push(newItem);
+            localStorage.setItem('projectItems', JSON.stringify(projectItems));
+            renderProjectItems();
+        }
+
+        // Proje verisini kaydeder ve yerel depoya yazar.
+        function saveProjectItem(itemId) {
+            projectItems[itemId].title = document.getElementById(`projectName${itemId}`).value;
+            projectItems[itemId].description = document.getElementById(`projectDescription${itemId}`).value;
+
+            localStorage.setItem('projectItems', JSON.stringify(projectItems));
+            renderProjectItems();
+        }
+
+        // Proje verisini siler ve yerel depoyu günceller.
+        function deleteProjectItem(itemId) {
+            projectItems.splice(itemId, 1);
+            localStorage.setItem('projectItems', JSON.stringify(projectItems));
+            renderProjectItems();
+        }
+
+        // Yetenek verilerini sayfaya ekler.
+        function renderAchievementItems() {
+            const achievementCards = document.getElementById('achievementCards');
+            achievementCards.innerHTML = '';
+
+            achievementItems.forEach((item, index) => {
+                const newItem = document.createElement('div');
+                newItem.className = 'achievement-card';
+                newItem.innerHTML = `
+                    <img src="${item.icon}" alt="icon">
+                    <button onclick="deleteAchievementItem(${index})">Sil</button>
+                `;
+                achievementCards.appendChild(newItem);
+            });
+        }
+
+        // Yetenek verisini siler ve yerel depoyu günceller.
+        function deleteAchievementItem(itemId) {
+            deletedAchievementItems.push(achievementItems[itemId]);
+            achievementItems.splice(itemId, 1);
+            localStorage.setItem('achievementItems', JSON.stringify(achievementItems));
+            localStorage.setItem('deletedAchievementItems', JSON.stringify(deletedAchievementItems));
+            renderAchievementItems();
+        }
+
+        const selectIconForm = document.getElementById('selectIconForm');
+        const iconSelect = document.getElementById('iconSelect');
+
+        selectIconForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Seçilen ikonun değerini alır.
+            const iconPath = iconSelect.value;
+            if (iconPath) {
+                // achievement öğelerine yeni bir öğe ekler ve yerel depoya kaydeder.
+                achievementItems.push({ icon: iconPath });
+                localStorage.setItem('achievementItems', JSON.stringify(achievementItems));
+                renderAchievementItems();
+            }
+        });
+
+        // Bilgi öğesini kaydeder ve MongoDB'ye POST isteği yapar.
+        function saveInfoItem(itemId) {
+            // HTML'de belirtilen itemId ile ilgili girdi değerlerini alır.
+            const tel = document.getElementById(`tel${itemId}`).value;
+            const mail = document.getElementById(`mail${itemId}`).value;
+            const adress = document.getElementById(`adress${itemId}`).value;
+
+            // Kaydedilecek bilgi öğesini bir nesne olarak oluşturur.
+            const info = {
+                tel: tel,
+                mail: mail,
+                adress: adress
+            };
+
+            // /saveInfo endpoint'ine POST isteği yapar ve bilgi öğesini JSON olarak gönderir.
+            fetch('/saveInfo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(info), // Bilgi nesnesini JSON formatına dönüştürerek gövdeye ekler.
+            })
+            .then(response => response.json()) // Sunucudan gelen yanıtı JSON formatına çözümleyerek işler.
+            .then(data => {
+                console.log('Info item saved to MongoDB:', data);// Başarıyla kaydedilen bilgi öğesini konsola kaydeder.
+            })
+            .catch(error => {
+                console.error('Error saving info item:', error);
+            });
+        }
+
+        // Sayfa yüklendiğinde kişisel bilgileri getir
+        fetch('/getInfo')
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    document.getElementById('tel0').value = data.tel;
+                    document.getElementById('mail0').value = data.mail;
+                    document.getElementById('adress0').value = data.adress;
+                }
+            })
+            .catch(error => console.error('Error fetching info:', error));
+            function renderLanguageItems() {
+            const timeLine = document.getElementById('languageTimeLine');
+            timeLine.innerHTML = '';
+
+            languageItems.forEach((item, index) => {
+                const newItem = document.createElement('div');
+                newItem.className = 'left-title card-title';
+
+                newItem.innerHTML = `
+                    <p class="badge badge-primary">Dil: </p>
+                    <textarea id="language${index}" rows="1" cols="20">${item.language}</textarea><br>
+                    <button onclick="saveLanguageItem(${index})">Kaydet</button>
+                    <button onclick="deleteLanguageItem(${index})">Sil</button>
+                `;
+
+                timeLine.appendChild(newItem);
+            });
+        }
+
+        // Yeni dil verisi ekler.
+        function addLanguageItem() {
+            const newItem = {
+                language: '',
+            };
+            languageItems.push(newItem);
+            localStorage.setItem('languageItems', JSON.stringify(languageItems));
+            renderLanguageItems();
+        }
+
+        // Dil verisini kaydeder ve yerel depoya yazar.
+        function saveLanguageItem(itemId) {
+            languageItems[itemId].language = document.getElementById(`language${itemId}`).value;
+
+            localStorage.setItem('languageItems', JSON.stringify(languageItems));
+            renderLanguageItems();
+        }
+
+        // Dil verisini siler ve yerel depoyu günceller.
+        function deleteLanguageItem(itemId) {
+            languageItems.splice(itemId, 1);
+            localStorage.setItem('languageItems', JSON.stringify(languageItems));
+            renderLanguageItems();
+        }
+
+    </script>
+</body>
+
+</html>
+

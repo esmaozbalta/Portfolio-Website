@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hakkımda</title>
+  <link rel="stylesheet" href="../css/hakkimda.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <nav class="collapsible-nav" id="collapsible-nav">
+      <a href="index.html" class="nav-link">ANASAYFA</a>
+      <a href="hakkimda.html" class="nav-link">HAKKIMDA</a>
+      <a href="portfolyo.html" class="nav-link">ÖZGEÇMİŞ</a>
+      <a href="contact.html" class="nav-link">İLETİŞİM</a>
+    </nav>
+  </header>
+  <section class="about-us">
+    <div class="about">
+      <div class="profile-img-wrapper">
+        <img src="./views/profil.jpeg" alt="profile">
+      </div>
+      <div class="text">
+        <h2>Hakkımda</h2>
+        <h5><span>Yazılım Mühendisliği</span> Öğrencisi</h5>
+        <p>Ben Esma Özbalta, Doğuş Üniversitesi Yazılım Mühendisliği 3.sınıf öğrencisiyim. Yazılım mühendisliği öğrencisi olarak ekip çalışmasına odaklanarak başarılı projeler ortaya koymaya önem veriyorum. Sürekli öğrenmeye ve becerilerimi geliştirmeye açık bir yaklaşımım var. C, C#, SQL ve Node.js gibi dillerde deneyimim var. Ayrıca, web teknolojileri ve veritabanı yönetimi konularında da deneyime sahibim.</p>
+        <div class="data">
+          <div class="links">
+            <a href="https://github.com/esmaozbalta" class="hire"><i class="fa-brands fa-github"></i>    Github</a>
+            <a href="https://www.linkedin.com/in/esma-%C3%B6zbalta-79892123a/" class="hire"><i class="fab fa-linkedin"></i>    Linkedin</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    async function fetchLinksAndDisplay() {
+      try {
+        const response = await fetch('/api/getLinks'); // MongoDB'den linkleri getiren bir API endpointi
+        if (!response.ok) {
+          throw new Error('Bağlantıları getirme başarısız');
+        }
+        const { githubLink, linkedinLink } = await response.json();
+        updateLinks(githubLink, linkedinLink); // Linkleri güncelle ve sayfada göster
+      } catch (error) {
+        console.error('Bağlantıları getirme hatası:', error);
+        // Hata durumunda kullanıcıya bildirim gösterebilirsiniz
+      }
+    }
+
+    function updateLinks(githubLink, linkedinLink) {
+      document.getElementById('githubLink').setAttribute('href', githubLink);
+      document.getElementById('linkedinLink').setAttribute('href', linkedinLink);
+    }
+
+    // Sayfa yüklendiğinde linkleri getir ve göster
+    document.addEventListener('DOMContentLoaded', fetchLinksAndDisplay);
+
+    document.getElementById('linkForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const githubLink = document.getElementById('githubLinkInput').value;
+      const linkedinLink = document.getElementById('linkedinLinkInput').value;
+
+      try {
+        const response = await fetch('/api/updateLinks', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ githubLink, linkedinLink })
+        });
+
+        if (!response.ok) {
+          throw new Error('Bağlantıları güncelleme başarısız');
+        }
+
+        alert('Bağlantılar başarıyla güncellendi');
+        updateLinks(githubLink, linkedinLink); // Linkleri güncelle ve sayfada göster
+      } catch (error) {
+        console.error('Bağlantıları güncelleme hatası:', error);
+        alert('Bağlantıları güncelleme sırasında bir hata oluştu');
+      }
+    });
+  </script>
+</body>
+</html>

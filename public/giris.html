@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giriş Yap</title>
+  <link rel="stylesheet" href="css/giris.css">
+</head>
+<body>
+  <div class="background"> <!-- Arka plan için genel konteyner -->
+    <div class="container"> <!-- İçerik kutusu -->
+      <div class="screen"> <!-- Giriş ekranı genel konteyneri -->
+        <div class="screen-header"> <!-- Giriş ekranı başlık çubuğu -->
+          <div class="screen-header-left"> <!-- Başlık sol bölümü -->
+            <div class="screen-header-button red"></div> <!-- Kapatma düğmesi -->
+            <div class="screen-header-button yellow"></div> <!-- Küçültme düğmesi -->
+            <div class="screen-header-button green"></div> <!-- Tam ekran düğmesi -->
+          </div>
+        </div>
+        <div class="screen-body"> <!-- Giriş ekranı ana içerik bölümü -->
+          <div class="screen-body-item left"> <!-- Sol bölüm -->
+            <div class="app-title">
+              <span>GİRİŞ</span>
+              <span>YAP</span>
+            </div>
+          </div>
+          <div class="screen-body-item"> <!-- Sağ bölüm -->
+            <div class="app-form"> <!-- Giriş formu -->
+              <div class="app-form-group">
+                <input id="kullaniciAdi" class="app-form-control" placeholder="Kullanıcı Adı">
+              </div>
+              <div class="app-form-group">
+                <input id="sifre" class="app-form-control" placeholder="Şifre" type="password">
+              </div>
+              <div class="app-form-group buttons"> <!-- Buton grupları -->
+                <button class="app-form-button" onclick="login()">GİRİŞ YAP</button>
+                <button class="app-form-button" onclick="goToKayit()">KAYIT OL</button>
+                <button class="app-form-button" onclick="goindex()">ANA SAYFA</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function login() {
+      const kullaniciAdi = document.getElementById('kullaniciAdi').value; // Kullanıcı adı giriş alanı değeri
+      const sifre = document.getElementById('sifre').value; // Şifre giriş alanı değeri
+
+      try {
+        const response = await fetch('/login', { // '/login' endpoint'ine POST isteği gönderme
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json' // JSON formatında içerik gönderme
+          },
+          body: JSON.stringify({ kullaniciAdi, sifre }) // Kullanıcı adı ve şifreyi JSON olarak gönderme
+        });
+
+        if (!response.ok) { // Eğer yanıt başarısızsa
+          throw new Error('Giriş işlemi başarısız'); // Hata fırlat
+        }
+
+        alert('Giriş işlemi başarılı'); // Başarılı giriş uyarısı
+        window.location.href = 'admin.html'; // Başarılı girişte admin.html sayfasına yönlendirme
+      } catch (error) {
+        console.error('Giriş işlemi sırasında hata:', error); // Hata durumunda konsola hata yazdırma
+        alert('Giriş işlemi sırasında bir hata oluştu'); // Hata uyarısı gösterme
+      }
+    }
+
+    function goToKayit() {
+      window.location.href = 'kayit.html'; // Kayıt ol sayfasına yönlendirme işlevi
+    }
+    function goindex() {
+      window.location.href = 'index.html'; // Kayıt ol sayfasına yönlendirme işlevi
+    }
+  </script>
+</body>
+</html>
+

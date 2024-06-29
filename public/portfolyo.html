@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ÖZGEÇMİŞ</title>
+    <link href="https://fonts.googleapis.com/css?family=Mukta:300,400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/vendors/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/portfolyo.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="collapsible-nav" id="collapsible-nav">
+            <a href="index.html" class="nav-link">ANASAYFA</a>
+            <a href="hakkimda.html" class="nav-link">HAKKIMDA</a>
+            <a href="portfolyo.html" class="nav-link">ÖZGEÇMİŞ</a>
+            <a href="contact.html" class="nav-link">İLETİŞİM</a>
+            <a href="admin.html" class="nav-link">ADMIN</a>
+        </nav>
+    </header>
+    <div class="content-wrapper">
+        <!-- Sol Menu -->
+        <aside>
+            <!-- Profil resmi -->
+            <div class="profile-img-wrapper">
+                <img src="../views/profil.jpeg" alt="profile">
+            </div>
+            <h1 class="profile-name">Esma Özbalta</h1>
+            <div class="text-center">
+                <span class="badge badge-white badge-pill profile-designation">Yazılım Mühendisliği Öğrencisi</span>
+            </div>
+            <!-- Sosyal medya bağlantıları -->
+            <nav class="social-links">
+                <a href="https://www.linkedin.com/in/esma-%C3%B6zbalta-79892123a/" class="social-link"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/esmaozbalta" class="social-link"><i class="fab fa-github"></i></a>
+            </nav>
+            <div class="left">
+                <h5 class="left-title">Kişisel Bilgiler</h5>
+                <div class="left-content" id="personalInfo">
+                    <!-- Kişisel bilgiler buraya dinamik olarak eklenecek -->
+                </div>
+            </div>
+            <div class="left card">
+                <div class="card-body">
+                    <div class="col-lg-6">
+                        <!-- Dil bölümü -->
+                        <h2 class="section-title">DILLER</h2>
+                        <ul id="languageTimeline" class="time-line">
+                            <!-- Dinamik olarak eklenecek -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <main>
+            <!-- Özgeçmiş bölümü -->
+            <section class="resume-section">
+                <div class="row">
+                    <!-- Eğitim bölümü -->
+                    <div class="col-lg-6">
+                        <h2 class="section-title">EĞİTİM</h2>
+                        <ul id="educationTimeline" class="time-line">
+                            <!-- Dinamik olarak eklenecek -->
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2 class="section-title">DENEYİM</h2>
+                        <ul id="experienceTimeline" class="time-line">
+                            <!-- Dinamik olarak eklenecek -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!-- Projeler bölümü -->
+            <section class="services-section">
+                <h2 class="section-title">PROJELER</h2>
+                <div class="row" id="projectTimeline">
+                    <!-- Dinamik olarak eklenecek projeler buraya gelecek -->
+                </div>
+            </section>
+            <section class="achievements-section">
+                <h2 class="section-title">YETENEKLER</h2>
+                <div class="achievement-cards-wrapper" id="dynamicAchievementCards">
+                    <!-- Dinamik olarak eklenecek yetenek ikonları buraya gelecek -->
+                </div>
+            </section>
+        </main>
+    </div>
+    <script>
+        // Değişkenler için boş diziler tanımlama
+        let educationItems = [];
+        let experienceItems = [];
+        let projectItems = [];
+        let achievementItems = [];
+        let languageItems = [];
+        
+        // Sayfa yüklendiğinde çalışacak işlev
+        window.onload = function () {
+        educationItems = JSON.parse(localStorage.getItem('educationItems')) || [];
+        experienceItems = JSON.parse(localStorage.getItem('experienceItems')) || [];
+        projectItems = JSON.parse(localStorage.getItem('projectItems')) || [];
+        achievementItems = JSON.parse(localStorage.getItem('achievementItems')) || [];
+        languageItems = JSON.parse(localStorage.getItem('languageItems')) || [];
+
+        // Fonksiyonları çağırarak içerikleri oluşturma
+        renderEducationItems();
+        renderExperienceItems();
+        renderProjectItems();
+        renderAchievementItems();
+        loadPersonalInfo();
+        renderLanguageItems();
+    };
+
+    // Eğitim bilgilerini oluşturma işlevi
+    function renderEducationItems() {
+        const educationTimeline = document.getElementById('educationTimeline');
+        educationTimeline.innerHTML = '';
+
+        educationItems.forEach(item => {
+            const newItem = document.createElement('li');
+            newItem.className = 'time-line-item';
+
+            newItem.innerHTML = `
+                <p class="badge badge-primary">${item.date}</p>
+                <h6 class="time-line-item-title">${item.school}</h6>
+                <p class="time-line-item-subtitle">${item.department}</p>
+                <p class="time-line-item-subtitle">${item.description}</p>
+            `;
+
+            educationTimeline.appendChild(newItem);
+        });
+    }
+
+    // Deneyim bilgilerini oluşturma işlevi
+    function renderExperienceItems() {
+        const experienceTimeline = document.getElementById('experienceTimeline');
+        experienceTimeline.innerHTML = '';
+
+        experienceItems.forEach(item => {
+            const newItem = document.createElement('li');
+            newItem.className = 'time-line-item';
+
+            newItem.innerHTML = `
+                <p class="badge badge-primary">${item.date}</p>
+                <h6 class="time-line-item-title">${item.company}</h6>
+                <p class="time-line-item-subtitle">${item.position}</p>
+                <p class="time-line-item-subtitle">${item.description}</p>
+            `;
+
+            experienceTimeline.appendChild(newItem);
+        });
+    }
+
+    // Proje bilgilerini oluşturma işlevi
+    function renderProjectItems() {
+        const projectTimeline = document.getElementById('projectTimeline');
+        projectTimeline.innerHTML = '';
+
+        projectItems.forEach(item => {
+            const newItem = document.createElement('div');
+            newItem.className = 'row-item';
+
+            newItem.innerHTML = `
+                <div class="service-card">
+                    <div class="service-icon">
+                        <img src="./views/proje.svg" alt="proje">
+                    </div>
+                    <div class="media-body">
+                        <h5 class="service-title">${item.title}</h5>
+                        <p class="service-description">${item.description}</p>
+                    </div>
+                </div>
+            `;
+
+            projectTimeline.appendChild(newItem);
+        });
+        }
+
+    // Başarı ikonlarını oluşturma işlevi
+    function renderAchievementItems() {
+        const dynamicAchievementCards = document.getElementById('dynamicAchievementCards');
+        dynamicAchievementCards.innerHTML = '';
+
+        achievementItems.forEach(item => {
+            const newItem = document.createElement('div');
+            newItem.className = 'media achievement-card';
+            newItem.innerHTML = `
+                <img src="${item.icon}" alt="ikon" class="achievement-card-icon">
+            `;
+            dynamicAchievementCards.appendChild(newItem);
+        });
+    }
+
+    // Kişisel bilgileri yükleme işlevi
+    async function loadPersonalInfo() {
+        try {
+            const response = await fetch('/getInfo');
+            if (response.ok) {
+                const info = await response.json();
+                const personalInfoDiv = document.getElementById('personalInfo');
+                personalInfoDiv.innerHTML = `
+                    <p>TEL NO : ${info.tel}</p>
+                    <p>EMAIL : ${info.mail}</p>
+                    <p>KONUM : ${info.adress}</p>
+                `;
+            } else {
+                console.error('Kişisel bilgiler alınamadı');
+            }
+        } catch (error) {
+            console.error('Kişisel bilgiler alınırken bir hata oluştu:', error);
+        }
+    }
+
+    // Dil bilgilerini oluşturma işlevi
+    function renderLanguageItems() {
+        const languageTimeline = document.getElementById('languageTimeline');
+        languageTimeline.innerHTML = '';
+
+        languageItems.forEach(item => {
+            const newItem = document.createElement('div');
+            newItem.className = 'time-line-item';
+
+            newItem.innerHTML = `
+                <p class="time-line-item-subtitle">${item.language}</p>
+            `;
+
+            languageTimeline.appendChild(newItem);
+        });
+    }
+    </script>
+</body>
+</html>

@@ -4,11 +4,11 @@ Bu site, kişisel ve mesleki bilgilerinizi sunmak için tasarlanmış bir web uy
 
 ## Özellikler
 
-- Hakkımda: Kişisel bilgilerim, eğitim geçmişim ve kariyer hedeflerim hakkında bilgi verir.
-- Özgeçmiş: Eğitim ve iş deneyimlerimi detaylı olarak gösterir.
-- Projeler: Katıldığım veya bireysel olarak geliştirdiğim projelerin tanıtımı ve açıklamaları.
-- Yetenekler: Teknoloji, programlama dilleri ve diğer yeteneklerimi gösteren simgeler.
-- İletişim: Benimle iletişime geçmek için gerekli bilgiler.
+- Hakkımda: Kişisel bilgiler, eğitim geçmişi ve kariyer hedefleri hakkında bilgiler.
+- Özgeçmiş: Eğitim ve iş deneyimleri hakkında detaylı bilgiler.
+- Projeler: Geliştirilen projelerin tanıtımı ve açıklamaları.
+- Yetenekler: Programlama dilleri yeteneklerini gösteren simgeler.
+- İletişim: İletişim Formu.
 
 ## Kullanılan Teknolojiler
 - Frontend: HTML, CSS, JavaScript

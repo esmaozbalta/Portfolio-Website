@@ -30,7 +30,7 @@ Bu site, kişisel ve mesleki bilgilerinizi sunmak için tasarlanmış bir web uy
 
 4. Veri tabanını bağlayın:
 
-Asağıdaki kodu kendi veri tabanı bilgilerinize göre güncelleyin.
+Aşağıdaki kodu kendi veri tabanı bilgilerinize göre güncelleyin.
 ```bash
 mongodb+srv://<kullaniciadi>:<sifre>@cluster0.mongodb.net/<veritabaniadi>?retryWrites=true&w=majority
 ```

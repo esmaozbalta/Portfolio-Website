@@ -40,6 +40,10 @@ mongodb+srv://<kullaniciadi>:<sifre>@cluster0.mongodb.net/<veritabaniadi>?retryW
     cd server
     node admin.js
 ```
+Sunucu aşağıdaki adreste çalışmaya başlar
+```bash
+http://localhost:3000
+```
 Projeyi çalıştırdıktan sonra, çalışan server'ın PID (Process ID) numarasını görüntülemek için aşağıdaki komutu kullanabilirsiniz. 
 
 Bu örnekte, server'ın 3000 numaralı port üzerinde çalıştığı varsayılmıştır:

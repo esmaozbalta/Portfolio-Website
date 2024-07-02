@@ -63,7 +63,8 @@ Server'ı durdurmak (terminate etmek) için, yukarıdaki komutla bulduğunuz PID
 - ### Hakkımda
 ![App Screenshot](screenshots/hakkimda.png)
 - ### Özgeçmiş
-![App Screenshot](screenshots/.png)
+![App Screenshot](screenshots/ozgecmis1.png)
+![App Screenshot](screenshots/ozgecmis2.png)
 - ### İletişim
 ![App Screenshot](screenshots/iletisim.png)
 - ### Admin Sayfası

@@ -1,66 +1,67 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
 *{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+    margin: 0; /* Tüm elemanlar için varsayılan margin değerini sıfırlar */
+    padding: 0; /* Tüm elemanlar için varsayılan padding değerini sıfırlar */
+    box-sizing: border-box; /* Elemanların boyutunu içerik + padding + border olarak ayarlar */
+    font-family: 'Poppins', sans-serif; /* Tüm elemanlar için varsayılan font ailesini Poppins yapar */
 }
+
 body, html {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+    margin: 0; /* Body ve HTML için varsayılan margin değerini sıfırlar */
+    padding: 0; /* Body ve HTML için varsayılan padding değerini sıfırlar */
+    font-family: Arial, sans-serif; /* Body ve HTML için varsayılan font ailesini Arial yapar */
 }
 
 .container {
     display: flex;
     flex-direction: row-reverse; /* fotoyu sola alma */
     justify-content: space-between; /* Aralarında boşluk bırak */
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(to bottom, #f4f4f4 0%, rgb(85,150,176) 110%);
+    align-items: center; /* Elemanları dikey olarak ortalar */
+    height: 100vh; /* Konteynerin yüksekliğini ekranın tamamı yapar */
+    background: linear-gradient(to bottom, #f4f4f4 0%, rgb(85,150,176) 110%); /* Arka planı yukarıdan aşağıya doğru gradyan yapar */
 }
 
 .content {
-    flex: 1;
-    padding: 20px;
-    text-align: center;
+    flex: 1; /* İçeriğin esnek olarak yer kaplamasını sağlar */
+    padding: 20px; /* İçeriğe 20px iç boşluk ekler */
+    text-align: center; /* Metni ortalar */
 }
 
 h1 {
-    font-size: 2.5em;
-    margin-bottom: 40px;
+    font-size: 2.5em; /* Başlık boyutunu 2.5em yapar */
+    margin-bottom: 40px; /* Başlığın altına 40px boşluk ekler */
 }
 
-.content a{ /*ben esma linki*/
-    text-decoration: none;
-    color: black;
+.content a { /* 'Ben Esma' linki için stil */
+    text-decoration: none; /* Linkin alt çizgisini kaldırır */
+    color: black; /* Linkin rengini siyah yapar */
 }
 
 .buttons {
-    display: flex;
-    justify-content: space-around;
+    display: flex; /* Butonlar için flexbox düzenini kullanır */
+    justify-content: space-around; /* Butonları etrafında boşluk bırakarak sıraya koyar */
 }
 
 .buttons a {
-    text-decoration: none;
-    color: #333;
-    padding: 10px 20px;
-    border: 1px solid #333;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none; /* Linklerin alt çizgisini kaldırır */
+    color: #333; /* Linklerin rengini #333 yapar */
+    padding: 10px 20px; /* Linklere 10px yukarı-aşağı, 20px sağa-sola iç boşluk ekler */
+    border: 1px solid #333; /* Linklere 1px genişliğinde #333 renginde kenarlık ekler */
+    border-radius: 5px; /* Linklerin köşelerini 5px yuvarlar */
+    transition: background-color 0.3s, color 0.3s; /* Arka plan rengi ve metin rengi değişikliklerini 0.3 saniyelik geçişle yapar */
 }
 
 .buttons a:hover {
-    background-color: #333;
-    color: #fff;
+    background-color: #333; /* Linklerin üzerine gelindiğinde arka plan rengini #333 yapar */
+    color: #fff; /* Linklerin üzerine gelindiğinde metin rengini beyaz yapar */
 }
 
 .photo {
-    flex: 1;
-    height: 100%;
-    background-image: url('../views/pc.jpg');
-    background-size: cover;
-    background-position: center;
-    border-right: color(srgb red green blue);
+    flex: 1; /* Fotoğrafın esnek olarak yer kaplamasını sağlar */
+    height: 100%; /* Fotoğrafın yüksekliğini %100 yapar */
+    background-image: url('../views/pc.jpg'); /* Fotoğrafın arka plan resmini ayarlar */
+    background-size: cover; /* Arka plan resmini kapsayacak şekilde boyutlandırır */
+    background-position: center; /* Arka plan resmini ortalar */
+    border-right: color(srgb red green blue); /* Sağ kenar rengini ayarlar */
 }
 

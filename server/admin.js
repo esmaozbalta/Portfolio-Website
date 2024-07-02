@@ -1,4 +1,3 @@
-// Gerekli modülleri yüklüyoruz.
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -6,21 +5,15 @@ const path = require('path');
 const cors = require('cors');
 const session = require('express-session');
 
-// Express uygulamasını oluşturuyoruz.
 const app = express();
-// PORT değişkenini tanımlıyoruz, 3000 portu varsayılan olarak kullanılıyor.
 const PORT = process.env.PORT || 3000;
 
-// Middleware ayarları
-// bodyParser, gelen isteklerin gövdesini JSON ve URL-encoded olarak ayrıştırmak için kullanılır.
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors()); // CORS politikalarını yönetmek için kullanılır.
-app.use(bodyParser.json()); // JSON verilerini ayrıştırmak için kullanılır.
-// Public dizinini statik dosyalar için kullanıyoruz.
+app.use(cors());
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
 // MongoDB bağlantısı
-// MongoDB Atlas bağlantı dizesi ile veritabanına bağlanıyoruz.
 const uri = 'mongodb+srv://es:es6118@Portfolio.2buwuap.mongodb.net/portfolyobase?retryWrites=true&w=majority&appName=Portfolio&tls=true';
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -60,7 +53,7 @@ app.post('/api/education', async (req, res) => {
   }
 });
 
-// Eğitim verilerini almak için API
+// Eğitim verilerini almak için
 app.get('/api/getEducation', async (req, res) => {
   try {
     const educationData = await Education.find();
@@ -100,7 +93,7 @@ app.post('/api/experience', async (req, res) => {
   }
 });
 
-// Deneyim verilerini almak için API
+// Deneyim verilerini almak için
 app.get('/api/getExperience', async (req, res) => {
   try {
     const experienceData = await Experience.find();
@@ -147,7 +140,6 @@ app.get('/api/getProjects', async (req, res) => {
   }
 });
 
-// Kişisel Bilgiler Şeması ve Modeli
 const infoSchema = new mongoose.Schema({
   tel: String,
   mail: String,
@@ -156,33 +148,35 @@ const infoSchema = new mongoose.Schema({
 
 const Info = mongoose.model('Info', infoSchema);
 
-// Kişisel bilgileri kaydetmek için API
+// Kişisel bilgileri kaydetme endpoint'i
 app.post('/saveInfo', async (req, res) => {
   const { tel, mail, adress } = req.body;
-
+  
   // Önce mevcut bilgiyi sil (eğer varsa)
   await Info.deleteMany({});
-
+  
   const newInfo = new Info({ tel, mail, adress });
   await newInfo.save();
-
+  
   res.json(newInfo);
 });
 
-// Kişisel bilgileri almak için API
+// Kişisel bilgileri getirme endpoint'i
 app.get('/getInfo', async (req, res) => {
   const info = await Info.findOne({});
   res.json(info);
 });
 
-// Dil Şeması ve Modeli
+
+
+// Deneyim Şeması ve Modeli
 const LanguageSchema = new mongoose.Schema({
   language: String,
 });
 
 const Language = mongoose.model('Language', LanguageSchema);
 
-// Yeni dil eklemek için API
+// Yeni deneyim öğesi eklemek için API
 app.post('/api/language', async (req, res) => {
   const { language } = req.body;
 
@@ -198,14 +192,14 @@ app.post('/api/language', async (req, res) => {
   }
 });
 
-// Dil verilerini almak için API
+// Deneyim verilerini almak için
 app.get('/api/getLanguage', async (req, res) => {
   try {
     const languageData = await Language.find();
     res.status(200).json(languageData);
   } catch (error) {
     console.error(error);
-    res.status(500).send('Dil verileri alınamadı');
+    res.status(500).send('Deneyim verileri alınamadı');
   }
 });
 
@@ -213,66 +207,154 @@ app.get('/api/getLanguage', async (req, res) => {
 const KullaniciSchema = new mongoose.Schema({
   kullaniciAdi: String,
   sifre: String,
+  eposta: String
 });
 
 const Kullanici = mongoose.model('Kullanici', KullaniciSchema);
 
-// Yeni kullanıcı kaydetmek için API
-app.post('/api/register', async (req, res) => {
-  const { kullaniciAdi, sifre } = req.body;
+// Kayıt ol endpoint'i
+app.post('/kayit', async (req, res) => {
+  const { kullaniciAdi, sifre, eposta } = req.body;
 
-  const yeniKullanici = new Kullanici({
-    kullaniciAdi,
-    sifre,
-  });
+  const yeniKullanici = new Kullanici({ kullaniciAdi, sifre, eposta });
 
   try {
     await yeniKullanici.save();
-    res.status(201).send('Kullanıcı kaydı başarılı');
+    console.log('Yeni kullanıcı kaydedildi:', yeniKullanici);
+    res.status(200).send('Kayıt işlemi başarılı');
   } catch (error) {
-    console.error('Kullanıcı kaydı sırasında hata:', error);
-    res.status(500).send('Kullanıcı kaydı sırasında bir hata oluştu');
+    console.error('Kayıt işlemi sırasında hata:', error);
+    res.status(500).send('Kayıt işlemi sırasında bir hata oluştu');
   }
 });
-
-// Kullanıcı giriş işlemi için API
-app.post('/api/login', async (req, res) => {
+app.post('/login', async (req, res) => {
   const { kullaniciAdi, sifre } = req.body;
 
   try {
-    const kullanici = await Kullanici.findOne({ kullaniciAdi, sifre });
+    const user = await Kullanici.findOne({ kullaniciAdi });
 
-    if (kullanici) {
-      // Kullanıcı bulundu, giriş başarılı
-      req.session.kullanici = kullanici; // Kullanıcıyı oturuma ekleyin
-      res.status(200).send('Giriş başarılı');
-    } else {
-      // Kullanıcı bulunamadı, giriş başarısız
-      res.status(401).send('Geçersiz kullanıcı adı veya şifre');
+    if (!user || user.sifre !== sifre) {
+      res.status(404).send('Kullanıcı bulunamadı veya şifre yanlış');
+      return;
     }
+
+    res.status(200).send('Giriş başarılı');
   } catch (error) {
     console.error('Giriş işlemi sırasında hata:', error);
-    res.status(500).send('Giriş işlemi sırasında bir hata oluştu');
+    res.status(500).send('Kullanıcı bulunamadı veya şifre yanlış');
   }
 });
 
-// Express-session yapılandırması
-app.use(session({
-  secret: 'your-secret-key',
-  resave: false,
-  saveUninitialized: true
-}));
+// API endpointi
+app.post('/api/updateLinks', async (req, res) => {
+  const { githubLink, linkedinLink } = req.body;
 
-// Başarılı giriş sonrası yönlendirme
-app.get('/hakkimda', (req, res) => {
-  if (req.session.kullanici) {
-    res.redirect('/hakkimda.html'); // Kullanıcı giriş yapmış, yönlendirme
-  } else {
-    res.status(401).send('Yetkisiz erişim'); // Kullanıcı giriş yapmamış
+  try {
+    // Veritabanına kaydetme işlemleri burada yapılabilir
+    console.log('Yeni GitHub Linki:', githubLink);
+    console.log('Yeni LinkedIn Linki:', linkedinLink);
+
+    // Başarılı yanıt gönder
+    res.status(200).send('Bağlantılar başarıyla güncellendi');
+  } catch (error) {
+    console.error('Bağlantıları güncelleme hatası:', error);
+    res.status(500).send('Bağlantıları güncelleme sırasında bir hata oluştu');
   }
 });
 
-// Sunucuyu belirlenen portta çalıştırıyoruz.
-app.listen(PORT, () => {
-  console.log(`Sunucu ${PORT} portunda çalışıyor`);
+// Proje Şeması ve Modeli
+const hakkimdaSchema = new mongoose.Schema({
+  title: String,
+  description: String,
 });
+
+const Hakkimda = mongoose.model('Hakkimda', hakkimdaSchema);
+
+// Yeni proje eklemek için API
+app.post('/api/hakkimdas', async (req, res) => {
+  const { title, description } = req.body;
+
+  const newHakkimda = new Hakkimda({
+    title,
+    description,
+  });
+
+  try {
+    await newHakkimda.save();
+    res.status(201).send(newHakkimda);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+// Proje verilerini almak için API
+app.get('/api/getHakkimdas', async (req, res) => {
+  try {
+    const hakkimdaData = await Hakkimda.find();
+    res.status(200).json(hakkimdaData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Proje verileri alınamadı');
+  }
+});
+
+
+const contactSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  phone: String,
+  message: String
+});
+
+const Contact = mongoose.model('Contact', contactSchema);
+
+app.use(bodyParser.json());
+
+app.post('/api/contact', async (req, res) => {
+  const { name, email, phone, message } = req.body;
+
+  const contact = new Contact({
+    name,
+    email,
+    phone,
+    message
+  });
+
+  try {
+    await contact.save();
+    res.status(200).send('Mesaj başarıyla kaydedildi.');
+  } catch (error) {
+    res.status(500).send('Mesaj kaydedilirken bir hata oluştu.');
+  }
+});
+
+app.use(express.static('public'));
+
+app.get('/adminhakkimda.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/adminhakkimda.html'));
+});
+
+app.get('/contact.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/adminhakkimda.html'));
+});
+
+app.get('/hakkimda.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/hakkimda.html'));
+});
+
+
+app.get('/kayit.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/kayit.html'));
+});
+
+
+app.get('/admin.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/admin.html'));
+});
+
+app.get('/portfolyo.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/portfolyo.html'));
+});
+
+// Sunucuyu başlatma
+app.listen(PORT, () => console.log(`Sunucu http://localhost:${PORT} adresinde çalışıyor`));

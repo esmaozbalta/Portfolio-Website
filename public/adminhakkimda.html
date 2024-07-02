@@ -15,6 +15,7 @@
       <a href="hakkimda.html" class="nav-link">HAKKIMDA</a>
       <a href="portfolyo.html" class="nav-link">ÖZGEÇMİŞ</a>
       <a href="contact.html" class="nav-link">İLETİŞİM</a>
+      <a href="admin.html" class="nav-link">ADMİN</a>
     </nav>
   </header>
   <section class="about-us">
@@ -24,59 +25,111 @@
       </div>
       <div class="text">
         <h2>Hakkımda</h2>
-        <h5><span>Yazılım Mühendisliği</span> Öğrencisi</h5>
-        <p>Ben Esma Özbalta, Doğuş Üniversitesi Yazılım Mühendisliği 3.sınıf öğrencisiyim. Yazılım mühendisliği öğrencisi olarak ekip çalışmasına odaklanarak başarılı projeler ortaya koymaya önem veriyorum. Sürekli öğrenmeye ve becerilerimi geliştirmeye açık bir yaklaşımım var. C, C#, SQL ve Node.js gibi dillerde deneyimim var. Ayrıca, web teknolojileri ve veritabanı yönetimi konularında da deneyime sahibim.</p>
+        <section class="services-section">
+          <div class="row" id="hakkimdaList">
+            <!-- Dinamik olarak eklenecek projeler buraya gelecek -->
+          </div>
+          <button onclick="addHakkimdaItem()">Bilgi Ekle</button>
+        </section>
         <div class="data">
-
-			<form id="linkForm" action="/api/updateLinks" method="POST">
-				<label for="githubLinkInput">GitHub Linki:  </label>
-				<input type="text" id="githubLinkInput" name="githubLink" placeholder="GitHub profil linki"><br><br>
-			  
-				<label for="linkedinLinkInput">LinkedIn Linki:  </label>
-				<input type="text" id="linkedinLinkInput" name="linkedinLink" placeholder="LinkedIn profil linki"><br>
-			  
-				<button type="submit">Kaydet</button>
-			  </form>
-			  
+          <form id="linkForm" action="/api/updateLinks" method="POST">
+            <label for="githubLinkInput">GitHub Linki:  </label>
+            <input type="text" id="githubLinkInput" name="githubLink" placeholder="GitHub profil linki"><br><br>
+            <label for="linkedinLinkInput">LinkedIn Linki:  </label>
+            <input type="text" id="linkedinLinkInput" name="linkedinLink" placeholder="LinkedIn profil linki"><br>
+            <button type="submit">Kaydet</button>
+          </form>
         </div>
       </div>
     </div>
   </section>
   <script>
-		document.getElementById('linkForm').addEventListener('submit', async function(event) {
-		event.preventDefault();
+    let hakkimdaItems = [];
 
-		const githubLink = document.getElementById('githubLinkInput').value;
-		const linkedinLink = document.getElementById('linkedinLinkInput').value;
+    window.onload = function () {
+      hakkimdaItems = JSON.parse(localStorage.getItem('hakkimdaItems')) || [];
+      renderHakkimdaItems();
+    };
 
-		try {
-			const response = await fetch('/api/updateLinks', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ githubLink, linkedinLink })
-			});
+    function renderHakkimdaItems() {
+      const hakkimdaList = document.getElementById('hakkimdaList');
+      hakkimdaList.innerHTML = '';
 
-			if (!response.ok) {
-			throw new Error('Bağlantıları güncelleme başarısız');
-			}
+      hakkimdaItems.forEach((item, index) => {
+        const newItem = document.createElement('div');
+        newItem.className = 'col-md-4';
 
-			alert('Bağlantılar başarıyla güncellendi');
-			updateLinks(githubLink, linkedinLink); // Linkleri güncelle ve sayfada göster
-		} catch (error) {
-			console.error('Bağlantıları güncelleme hatası:', error);
-			alert('Bağlantıları güncelleme sırasında bir hata oluştu');
-		}
-		});
+        newItem.innerHTML = `
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Baslık: </h5>
+              <textarea id="hakkimdaName${index}" rows="1" cols="50">${item.title}</textarea><br>
+              <p class="card-text">Proje Hakkımda: </p>
+              <textarea id="hakkimdaDescription${index}" rows="10" cols="50">${item.description}</textarea><br>
+              <button onclick="saveHakkimdaItem(${index})">Kaydet</button>
+              <button onclick="deleteHakkimdaItem(${index})">Sil</button>
+            </div>
+          </div>
+        `;
 
-		function updateLinks(githubLink, linkedinLink) {
-		document.getElementById('githubLink').setAttribute('href', githubLink);
-		document.getElementById('githubLink').innerHTML = `<i class="fab fa-github"></i> GitHub`;
+        hakkimdaList.appendChild(newItem);
+      });
+    }
 
-		document.getElementById('linkedinLink').setAttribute('href', linkedinLink);
-		document.getElementById('linkedinLink').innerHTML = `<i class="fab fa-linkedin"></i> LinkedIn`;
-		}
+    function addHakkimdaItem() {
+      hakkimdaItems.push({ title: '', description: '' });
+      localStorage.setItem('hakkimdaItems', JSON.stringify(hakkimdaItems));
+      renderHakkimdaItems();
+    }
+
+    function saveHakkimdaItem(itemId) {
+      hakkimdaItems[itemId].title = document.getElementById(`hakkimdaName${itemId}`).value;
+      hakkimdaItems[itemId].description = document.getElementById(`hakkimdaDescription${itemId}`).value;
+
+      localStorage.setItem('hakkimdaItems', JSON.stringify(hakkimdaItems));
+      renderHakkimdaItems();
+    }
+
+    function deleteHakkimdaItem(itemId) {
+      hakkimdaItems.splice(itemId, 1);
+      localStorage.setItem('hakkimdaItems', JSON.stringify(hakkimdaItems));
+      renderHakkimdaItems();
+    }
+
+    document.getElementById('linkForm').addEventListener('submit', async function(event) {
+      event.preventDefault(); // Formun varsayılan gönderme işlemini engeller
+
+      const githubLink = document.getElementById('githubLinkInput').value; // GitHub linki değerini alır
+      const linkedinLink = document.getElementById('linkedinLinkInput').value; // LinkedIn linki değerini alır
+
+      try {
+        const response = await fetch('/api/updateLinks', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'  // JSON içeriği gönderir
+          },
+          body: JSON.stringify({ githubLink, linkedinLink }) // Gönderilen veri
+        });
+
+        if (!response.ok) {
+          throw new Error('Bağlantıları güncelleme başarısız');
+        }
+
+        alert('Bağlantılar başarıyla güncellendi');
+        updateLinks(githubLink, linkedinLink); // Linkleri güncelle ve sayfada göster
+      } catch (error) {
+        console.error('Bağlantıları güncelleme hatası:', error);
+        alert('Bağlantıları güncelleme sırasında bir hata oluştu');
+      }
+    });
+
+    function updateLinks(githubLink, linkedinLink) {
+      document.getElementById('githubLink').setAttribute('href', githubLink); // GitHub linkini günceller
+      document.getElementById('githubLink').innerHTML = `<i class="fab fa-github"></i> GitHub`;
+
+      document.getElementById('linkedinLink').setAttribute('href', linkedinLink); // LinkedIn linkini günceller
+      document.getElementById('linkedinLink').innerHTML = `<i class="fab fa-linkedin"></i> LinkedIn`;
+    }
   </script>
 </body>
 </html>

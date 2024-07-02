@@ -1,135 +1,133 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  margin: 0; /* Tüm elemanların varsayılan margin değerini sıfırlar */
+  padding: 0; /* Tüm elemanların varsayılan padding değerini sıfırlar */
+  box-sizing: border-box; /* Elemanların boyutunu içerik + padding + border olarak hesaplar */
+  font-family: 'Poppins', sans-serif; /* Tüm elemanlar için varsayılan font ailesini Poppins yapar */
 }
-
+.service-title {
+  color: #4070f4; 
+}
 .about-us {
-  min-height: 100vh; /* Sayfa boyu minimum yükseklik */
-  padding: 90px 0;
-  background: #ddd;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  min-height: 100vh; /* Sayfanın minimum yüksekliğini ekran yüksekliği kadar yapar */
+  padding: 90px 0; /* Üstten ve alttan 90px boşluk ekler */
+  background: #ddd; /* Arka plan rengini #ddd yapar */
+  display: flex; /* Flexbox düzenini kullanır */
+  justify-content: center; /* Elemanları yatayda ortalar */
+  align-items: center; /* Elemanları dikeyde ortalar */
 }
 
 .about {
-  width: 90%;
-  max-width: 1200px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
+  width: 90%; /* Genişliği %90 yapar */
+  max-width: 1200px; /* Maksimum genişliği 1200px yapar */
+  display: flex; /* Flexbox düzenini kullanır */
+  flex-wrap: wrap; /* Elemanların taşması durumunda alt satıra geçmesini sağlar */
+  justify-content: space-around; /* Elemanlar arasına boşluk bırakır */
+  align-items: center; /* Elemanları dikeyde ortalar */
 }
 
 .profile-img-wrapper {
-  text-align: center;
-  margin-bottom: 20px;
+  text-align: center; /* Metni ortalar */
+  margin-bottom: 20px; /* Alt tarafa 20px boşluk ekler */
 }
 
 .profile-img-wrapper img {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  border: 3px solid #4070f4;
+  width: 160px; /* Genişliği 160px yapar */
+  height: 160px; /* Yüksekliği 160px yapar */
+  border-radius: 50%; /* Köşeleri yuvarlak yapar */
+  border: 3px solid #4070f4; /* 3px genişliğinde #4070f4 renginde kenarlık ekler */
 }
 
 .text {
-  flex: 1;
-  padding: 0 20px;
-  max-width: 500px;
+  flex: 1; /* Esnek olarak yer kaplamasını sağlar */
+  padding: 0 20px; /* Sağ ve sol tarafa 20px iç boşluk ekler */
+  max-width: 500px; /* Maksimum genişliği 500px yapar */
 }
 
 .text h2 {
-  font-size: 2rem; /* 48px */
-  font-weight: 600;
-  margin-bottom: 10px;
+  font-size: 2rem; /* Font boyutunu 2rem yapar (yaklaşık 32px) */
+  font-weight: 600; /* Font ağırlığını 600 yapar */
+  margin-bottom: 10px; /* Alt tarafa 10px boşluk ekler */
 }
 
 .text h5 {
-  font-size: 1.3rem; /* 22px */
-  font-weight: 500;
-  margin-bottom: 20px;
-}
-
-span {
-  color: #4070f4;
+  font-size: 1.3rem; /* Font boyutunu 1.3rem yapar (yaklaşık 20.8px) */
+  font-weight: 500; /* Font ağırlığını 500 yapar */
+  margin-bottom: 20px; /* Alt tarafa 20px boşluk ekler */
 }
 
 .text p {
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.5;
-  letter-spacing: 1px;
+  font-size: 1.125rem; /* Font boyutunu 1.125rem yapar (yaklaşık 18px) */
+  line-height: 1.5; /* Satır yüksekliğini 1.5 katı yapar */
+  letter-spacing: 1px; /* Harfler arası boşluğu 1px yapar */
 }
 
 .data {
-  margin-top: 40px;
+  margin-top: 40px; /* Üst tarafa 40px boşluk ekler */
 }
 
 .buttons {
-  display: flex;
-  justify-content: space-around;
+  display: flex; /* Flexbox düzenini kullanır */
+  justify-content: space-around; /* Butonlar arasına boşluk bırakır */
 }
 
-.hire{
-  font-size: 17px;
-  background: #4070f4;
-  color: #fff;
-  text-decoration: none;
-  border: none;
-  padding: 9px 35px;
-  border-radius: 6px;
-  transition: 0.5s;
+.hire {
+  font-size: 17px; /* Font boyutunu 17px yapar */
+  background: #4070f4; /* Arka plan rengini #4070f4 yapar */
+  color: #fff; /* Metin rengini beyaz yapar */
+  text-decoration: none; /* Alt çizgiyi kaldırır */
+  border: none; /* Kenarlık eklemez */
+  padding: 9px 35px; /* Üstten ve alttan 9px, sağdan ve soldan 35px iç boşluk ekler */
+  border-radius: 6px; /* Köşeleri 6px yuvarlar */
+  transition: 0.5s; /* Geçiş süresini 0.5 saniye yapar */
 }
 
 .hire:hover {
-  background: #000;
+  background: #000; /* Üzerine gelindiğinde arka plan rengini siyah yapar */
 }
 
 /* Navbar */
 header {
-  background-color: #343a40;
-  color: #fff;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1000;
+  background-color: #343a40; /* Arka plan rengini #343a40 yapar */
+  color: #fff; /* Metin rengini beyaz yapar */
+  padding: 10px 20px; /* Üstten ve alttan 10px, sağdan ve soldan 20px boşluk ekler */
+  display: flex; /* Flexbox düzenini kullanır */
+  align-items: center; /* Elemanları dikeyde ortalar */
+  justify-content: space-between; /* Elemanlar arasına boşluk bırakır */
+  position: fixed; /* Sabit pozisyonda tutar */
+  width: 100%; /* Genişliği %100 yapar */
+  top: 0; /* Sayfanın üst kısmına yerleştirir */
+  left: 0; /* Sayfanın sol tarafına yerleştirir */
+  z-index: 1000; /* Z-index değerini 1000 yapar, diğer elemanların üstünde görünür */
 }
 
 .nav-link {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 10px;
-  font-size: 1rem; /* 16px */
-  transition: color 0.3s;
+  color: #fff; /* Linklerin rengini beyaz yapar */
+  text-decoration: none; /* Alt çizgiyi kaldırır */
+  margin: 0 10px; /* Sağdan ve soldan 10px boşluk ekler */
+  font-size: 1rem; /* Font boyutunu 1rem yapar (yaklaşık 16px) */
+  transition: color 0.3s; /* Renk değişim geçiş süresini 0.3 saniye yapar */
 }
 
 .nav-link:hover {
-  color: #4070f4;
+  color: #4070f4; /* Üzerine gelindiğinde link rengini #4070f4 yapar */
 }
 
 @media (max-width: 768px) {
   .about {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    flex-direction: column; /* Ekran genişliği 768px'den küçük olduğunda elemanları dikeyde sıralar */
+    align-items: center; /* Elemanları dikeyde ortalar */
+    text-align: center; /* Metni ortalar */
   }
 
   .text {
-    padding: 20px 0;
-    text-align: center;
+    padding: 20px 0; /* Üstten ve alttan 20px boşluk ekler */
+    text-align: center; /* Metni ortalar */
   }
 
   .hire {
-    margin-top: 20px;
+    margin-top: 20px; /* Üst tarafa 20px boşluk ekler */
   }
 }
 
